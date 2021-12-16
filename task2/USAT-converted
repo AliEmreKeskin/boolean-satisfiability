@@ -1,0 +1,15 @@
+(declare-const p Bool)
+(declare-const q Bool)
+(declare-const r Bool)
+(declare-const s Bool)
+(assert
+(and
+(or p q (not s))
+(or (not q) (nto r) (not s))
+(or s (not p) q)
+(or s (not p) r)
+(or s (not q) (q))
+(or s (not q) r)
+))
+(check-sat)
+(get-model)
