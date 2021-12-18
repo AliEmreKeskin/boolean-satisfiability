@@ -159,7 +159,7 @@ sat
 ```
 As the first line is “sat” for both original and converted formula outputs we say that these two formula is equisatisfiable.
 ## Task 3
-For the solution of n-queens problem “Automated Reasoning: satisfiability” course on coursera.org was very helpful. [https://www.coursera.org/learn/automated-reasoning-sat] Even for the 4-queen solution the SMT-LIB3 code will be very long to write by hand. So a Pyhton script utilized to generate the file for us. Since the script will include some loops it will be easy to make them parameterized for n number of iterations. At that point lets focus on the n-queens problem.
+For the solution of n-queens problem “Automated Reasoning: satisfiability” course on coursera.org was very helpful. [https://www.coursera.org/learn/automated-reasoning-sat] Even for the 4-queen solution the SMT-LIB2 code will be very long to write by hand. So a Pyhton script utilized to generate the file for us. Since the script will include some loops it will be easy to make them parameterized for n number of iterations. At that point lets focus on the n-queens problem.
 
 Some constraints are defined for the solution. The constraints are listed below:
 
