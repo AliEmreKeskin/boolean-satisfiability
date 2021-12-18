@@ -1,23 +1,17 @@
-(((p ∨ q) → (q ∧ r)) ↔ ¬s)
-((((p ∨ q) → (q ∧ r)) → ¬s) ∧ (¬s → ((p ∨ q) → (q ∧ r))))
-(((¬(p ∨ q) ∨ (q ∧ r)) → ¬s) ∧ (¬s → ((p ∨ q) → (q ∧ r))))
-(((¬(p ∨ q) ∨ (q ∧ r)) → ¬s) ∧ (¬s → (¬(p ∨ q) ∨ (q ∧ r))))
-((¬(¬(p ∨ q) ∨ (q ∧ r)) ∨ ¬s) ∧ (¬s → (¬(p ∨ q) ∨ (q ∧ r))))
-((¬(¬(p ∨ q) ∨ (q ∧ r)) ∨ ¬s) ∧ (¬¬s ∨ (¬(p ∨ q) ∨ (q ∧ r))))
-((¬((¬p ∧ ¬q) ∨ (q ∧ r)) ∨ ¬s) ∧ (¬¬s ∨ (¬(p ∨ q) ∨ (q ∧ r))))
-((¬((¬p ∧ ¬q) ∨ (q ∧ r)) ∨ ¬s) ∧ (¬¬s ∨ ((¬p ∧ ¬q) ∨ (q ∧ r))))
-(((¬(¬p ∧ ¬q) ∧ ¬(q ∧ r)) ∨ ¬s) ∧ (¬¬s ∨ ((¬p ∧ ¬q) ∨ (q ∧ r))))
-((((¬¬p ∨ ¬¬q) ∧ ¬(q ∧ r)) ∨ ¬s) ∧ (¬¬s ∨ ((¬p ∧ ¬q) ∨ (q ∧ r))))
-((((¬¬p ∨ ¬¬q) ∧ (¬q ∨ ¬r)) ∨ ¬s) ∧ (¬¬s ∨ ((¬p ∧ ¬q) ∨ (q ∧ r))))
-((((p ∨ q) ∧ (¬q ∨ ¬r)) ∨ ¬s) ∧ (s ∨ ((¬p ∧ ¬q) ∨ (q ∧ r))))
-
-(((p ∨ q) ∧ (¬q ∨ ¬r)) ∨ ¬s)
-(((p ∨ q) ∨ ¬s) ∧ ((¬q ∨ ¬r) ∨ ¬s))
-((p ∨ q ∨ ¬s) ∧ (¬q ∨ ¬r ∨ ¬s))
-
-(s ∨ ((¬p ∧ ¬q) ∨ (q ∧ r)))
-(s ∨ ((¬p ∨ q) ∧ (¬p ∨ r) ∧ (¬q ∨ q) ∧ (¬q ∨ r)))
-((s ∨ ¬p ∨ q) ∧ (s ∨ ¬p ∨ r) ∧ (s ∨ ¬q ∨ q) ∧ (s ∨ ¬q ∨ r))
-
-(((p ∨ q ∨ ¬s) ∧ (¬q ∨ ¬r ∨ ¬s)) ∧ ((s ∨ ¬p ∨ q) ∧ (s ∨ ¬p ∨ r) ∧ (s ∨ ¬q ∨ q) ∧ (s ∨ ¬q ∨ r)))
+(((p ∨ q) → (q ∧ r)) ↔ ¬s) biconditional elimination
+((((p ∨ q) → (q ∧ r)) → ¬s) ∧ (¬s → ((p ∨ q) → (q ∧ r)))) implication elimination
+(((¬(p ∨ q) ∨ (q ∧ r)) → ¬s) ∧ (¬s → ((p ∨ q) → (q ∧ r)))) implicaiton elimination
+(((¬(p ∨ q) ∨ (q ∧ r)) → ¬s) ∧ (¬s → (¬(p ∨ q) ∨ (q ∧ r)))) implication elimination
+((¬(¬(p ∨ q) ∨ (q ∧ r)) ∨ ¬s) ∧ (¬s → (¬(p ∨ q) ∨ (q ∧ r)))) implication elimination
+((¬(¬(p ∨ q) ∨ (q ∧ r)) ∨ ¬s) ∧ (¬¬s ∨ (¬(p ∨ q) ∨ (q ∧ r)))) de Morgan
+((¬((¬p ∧ ¬q) ∨ (q ∧ r)) ∨ ¬s) ∧ (¬¬s ∨ (¬(p ∨ q) ∨ (q ∧ r)))) de Morgan
+((¬((¬p ∧ ¬q) ∨ (q ∧ r)) ∨ ¬s) ∧ (¬¬s ∨ ((¬p ∧ ¬q) ∨ (q ∧ r)))) de Morgan
+(((¬(¬p ∧ ¬q) ∧ ¬(q ∧ r)) ∨ ¬s) ∧ (¬¬s ∨ ((¬p ∧ ¬q) ∨ (q ∧ r)))) de Morgan
+((((¬¬p ∨ ¬¬q) ∧ ¬(q ∧ r)) ∨ ¬s) ∧ (¬¬s ∨ ((¬p ∧ ¬q) ∨ (q ∧ r)))) de Morgan
+((((¬¬p ∨ ¬¬q) ∧ (¬q ∨ ¬r)) ∨ ¬s) ∧ (¬¬s ∨ ((¬p ∧ ¬q) ∨ (q ∧ r)))) double-negation elimination
+((((p ∨ q) ∧ (¬q ∨ ¬r)) ∨ ¬s) ∧ (s ∨ ((¬p ∧ ¬q) ∨ (q ∧ r)))) distribute or over and
+((((p ∨ q) ∨ ¬s) ∧ ((¬q ∨ ¬r) ∨ ¬s)) ∧ (s ∨ ((¬p ∧ ¬q) ∨ (q ∧ r)))) associativity of or
+(((p ∨ q ∨ ¬s) ∧ (¬q ∨ ¬r ∨ ¬s)) ∧ (s ∨ ((¬p ∧ ¬q) ∨ (q ∧ r)))) distribute or over and
+(((p ∨ q ∨ ¬s) ∧ (¬q ∨ ¬r ∨ ¬s)) ∧ (s ∨ ((¬p ∨ q) ∧ (¬p ∨ r) ∧ (¬q ∨ q) ∧ (¬q ∨ r)))) distribute or over and
+(((p ∨ q ∨ ¬s) ∧ (¬q ∨ ¬r ∨ ¬s)) ∧ ((s ∨ ¬p ∨ q) ∧ (s ∨ ¬p ∨ r) ∧ (s ∨ ¬q ∨ q) ∧ (s ∨ ¬q ∨ r))) associativity of and
 ((p ∨ q ∨ ¬s) ∧ (¬q ∨ ¬r ∨ ¬s) ∧ (s ∨ ¬p ∨ q) ∧ (s ∨ ¬p ∨ r) ∧ (s ∨ ¬q ∨ q) ∧ (s ∨ ¬q ∨ r))
