@@ -1,10 +1,12 @@
 # boolean-satisfiability
 
-
-Task 1
+## Task 1
 Some random propositional formula that is 3-SAT is written. Which is given below.
+```
 (A ∨ B ∨ C) ∧ (D ∨ B ∨ C) ∧ (A ∨ E ∨ F) ∧ (F ∨ G ∨ H) ∧ (A ∨ B ∨ D)
+```
 The formula is written in SMT-LIB2 syntax.
+```
 (declare-const A Bool)
 (declare-const B Bool)
 (declare-const C Bool)
@@ -23,9 +25,13 @@ The formula is written in SMT-LIB2 syntax.
 ))
 (check-sat)
 (get-model)
+```
 The formula is saved to a file named “3SAT”. The file is passed to z3 program with given command form command line.
+```
 z3 -smt2 3SAT
+```
 And the output is:
+```
 sat
 (
   (define-fun A () Bool
@@ -45,13 +51,17 @@ sat
   (define-fun C () Bool
     false)
 )
+```
 The output means the formula is satisfiable and the satisfying assignment is A=true, B=true, C=false, D=false, E=false, F=false, G=true, H=false.
 Truth Table Generator tool is aldo used to verify that the given assignment returns true.
 
-Task 2
+## Task 2
 An unrestricted propositional formula is written by using all possible operators.
+```
 (((p ∨ q) → (q ∧ r)) ↔ ¬s)
+```
 The formula is converted to CNF by hand with listed operations below:
+```
 (((p ∨ q) → (q ∧ r)) ↔ ¬s) biconditional elimination
 ((((p ∨ q) → (q ∧ r)) → ¬s) ∧ (¬s → ((p ∨ q) → (q ∧ r)))) implication elimination
 (((¬(p ∨ q) ∨ (q ∧ r)) → ¬s) ∧ (¬s → ((p ∨ q) → (q ∧ r)))) implicaiton elimination
@@ -69,15 +79,19 @@ The formula is converted to CNF by hand with listed operations below:
 (((p ∨ q ∨ ¬s) ∧ (¬q ∨ ¬r ∨ ¬s)) ∧ (s ∨ ((¬p ∨ q) ∧ (¬p ∨ r) ∧ (¬q ∨ q) ∧ (¬q ∨ r)))) distribute or over and
 (((p ∨ q ∨ ¬s) ∧ (¬q ∨ ¬r ∨ ¬s)) ∧ ((s ∨ ¬p ∨ q) ∧ (s ∨ ¬p ∨ r) ∧ (s ∨ ¬q ∨ q) ∧ (s ∨ ¬q ∨ r))) associativity of and
 ((p ∨ q ∨ ¬s) ∧ (¬q ∨ ¬r ∨ ¬s) ∧ (s ∨ ¬p ∨ q) ∧ (s ∨ ¬p ∨ r) ∧ (s ∨ ¬q ∨ q) ∧ (s ∨ ¬q ∨ r))
+```
 Since the formula is already 3-SAT no more steps are required. The resulting formula is:
+```
 (( p ∨  q ∨ ¬s) ∧
  (¬q ∨ ¬r ∨ ¬s) ∧
  ( s ∨ ¬p ∨  q) ∧
  ( s ∨ ¬p ∨  r) ∧
  ( s ∨ ¬q ∨  q) ∧
  ( s ∨ ¬q ∨  r))
-USAT-org
+```
+### USAT-org
 The original unrestricted formula is written in SMT_LIB2 syntax:
+```
 (declare-const p Bool)
 (declare-const q Bool)
 (declare-const r Bool)
@@ -85,8 +99,10 @@ The original unrestricted formula is written in SMT_LIB2 syntax:
 (assert (iff (implies (or p q) (and q r)) (not s)))
 (check-sat)
 (get-model)
-USAT-converted
+```
+### USAT-converted
 The converted 3-SAT formule is written in SMT_LIB2 syntax:
+```
 (declare-const p Bool)
 (declare-const q Bool)
 (declare-const r Bool)
@@ -102,11 +118,15 @@ The converted 3-SAT formule is written in SMT_LIB2 syntax:
 ))
 (check-sat)
 (get-model)
-Equisatisfiability
+```
+### Equisatisfiability
 If the two formula is both satisfiable or both not satisfiable then they are equisatisfiable. [https://en.wikipedia.org/wiki/Equisatisfiability]
 USAT-org given to z3 as below:
+```
 z3 -smt2 USAT-org
+```
 The output for USAT-org:
+```
 sat
 (
   (define-fun s () Bool
@@ -118,9 +138,13 @@ sat
   (define-fun r () Bool
     false)
 )
+```
 USAT-converted given to z3 as below:
+```
 z3 -smt2 USAT-converted
+```
 The output for USAT-converted:
+```
 sat
 (
   (define-fun p () Bool
@@ -132,35 +156,44 @@ sat
   (define-fun r () Bool
     false)
 )
+```
 As the first line is “sat” for both original and converted formula outputs we say that these two formula is equisatisfiable.
-Task 3
+## Task 3
 For the solution of n-queens problem “Automated Reasoning: satisfiability” course on coursera.org was very helpful. [https://www.coursera.org/learn/automated-reasoning-sat] Even for the 4-queen solution the SMT-LIB3 code will be very long to write by hand. So a Pyhton script utilized to generate the file for us. Since the script will include some loops it will be easy to make them parameterized for n number of iterations. At that point lets focus on the n-queens problem.
+
 Some constraints are defined for the solution. The constraints are listed below:
+
     1. At least one queen on every row:
+
        Since the problem defines the number of queens and the number of rows as same there has to be at leas one queen on every row. For a single row this can be satifiable with an “or” of if the position has queen for every position on the row. Propositional formula for this constraint can be written as below:
        
        If one row has at least one queen then if we “and” the formula for all these rows this gives as every row has at least one queen and this can be written as below:
        
     2. At most one queen on every row:
+
        Since a queen can beat another queen on the same row there has to be a single queen on a row. If every row has a queen then they also has to be single on the row. For a single row it means any two position cant have a queen at same time. This can be written as:
        
        To make it a constraint for every row. Write the formula for all rows and “and” them. This can be written as:
        
     3. At least one queen on every column:
+
        Since the problem defines the number of queens and the number of columns as same there has to be at leas one queen on every column. This is similar to formula for the rows. Just re-aling the indices for columns. This can be written as:
        
     4. At most one queen on every row:
+
        Similar to row this rule also applies to columns and the folmula can be written as:
        
     5. At most one queen on every diagonal:
+
        Since the number on diagonals are more than the number of queens there is no constraint on the least number of queens on a diagonal but a queen can beat another queen on the same diagonal so it has to be at most one queen on a diagonal. This rule does not matter for the direction of diagonal ither like “/” or “\”. Two position is diagonal if the sum of indeces are equal or the difference of indices are equal. This can be written as:
        
 All these constraint has to be satisfied at the same time so they will be connected with “and” operator.
-Python Script
+### Python Script
 This Python script accepts the number of queens and generates the <n>-queens.smt file thas has a formula written in SMT-LIB2 syntax.
 
-4-Queens
+### 4-Queens
 SMT-LIB2 file is created like this:
+```
 (declare-fun p (Int Int) Bool)
 (assert (and
 (or (p 1 1) (p 1 2) (p 1 3) (p 1 4))
@@ -251,7 +284,9 @@ SMT-LIB2 file is created like this:
 ))
 (check-sat)
 (get-model)
+```
 z3 output is like this:
+```
 sat
 (
   (define-fun p ((x!0 Int) (x!1 Int)) Bool
@@ -261,7 +296,8 @@ sat
     (ite (and (= x!0 4) (= x!1 2)) true
       false)))))
 )
-n-queens
+```
+### n-queens
 The to the n-queens is making the loop iterate to the n. The script is written like this so we can generate a formula for any number of queens. Some examples are given in the appendix.
-References
-Appendix
+## References
+## Appendix
