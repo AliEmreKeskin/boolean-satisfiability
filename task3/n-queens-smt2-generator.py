@@ -98,8 +98,8 @@ class n_queens_smt2_generator:
                             )
         return string
 
-
+import sys
 if __name__ == "__main__":
     g = n_queens_smt2_generator()
-    g.generate(8)
-    g.write_file("n-queens.smt")
+    g.generate(int(sys.argv[1]))
+    g.write_file(sys.argv[1]+"-queens.smt")
