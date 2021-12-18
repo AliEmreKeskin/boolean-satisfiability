@@ -5,10 +5,10 @@
 (assert
 (and
 (or p q (not s))
-(or (not q) (nto r) (not s))
+(or (not q) (not r) (not s))
 (or s (not p) q)
 (or s (not p) r)
-(or s (not q) (q))
+(or s (not q) q)
 (or s (not q) r)
 ))
 (check-sat)
